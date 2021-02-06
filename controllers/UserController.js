@@ -6,7 +6,7 @@ class UserController {
     /* @route '/user/' */
     index = (req, res) => {
         // Send User
-        res.send(req.user);
+        res.send({user: req.user});
     }
 
     /* @route '/user/register' */
@@ -77,7 +77,7 @@ class UserController {
                 // Login the User
                 req.login(user, err => {
                     if (err) throw err;
-                    res.json({status: 'success', user: req.user});
+                    else res.json({status: 'success', user: req.user});
                 });
             }
         })(req, res, next);
@@ -87,6 +87,28 @@ class UserController {
     logout = (req, res) => {
         req.logout();
         res.json({status: 'success'})
+    }
+
+    /* @route '/user/live' */
+    live = (req, res) => {
+        // Send a Random Number
+        res.json({
+            views : 35 - Math.floor(Math.random() * Math.floor(10))
+        });
+    }
+
+    /* @route '/user/data' */
+    data = (req, res) => {
+        res.json({
+            page_visits: {
+                daily: [10, 31, 23, 50, 63, 94, 45],
+                monthly: [391, 912, 1025, 310, 940, 960, 200]
+            },
+            sales: {
+                daily: [2, 3, 1, 5, 6, 2, 4],
+                monthly: [56, 65, 72, 11, 15, 24, 50]
+            }
+        })
     }
 
     validate = (data) => {

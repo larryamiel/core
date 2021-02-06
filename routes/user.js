@@ -16,4 +16,10 @@ router.post('/login', uc.login);
 // Logout User
 router.post('/logout', uc.logout);
 
+// Get Live Visits of User
+router.post('/live', uc.live);
+
+// Get Data of User
+router.post('/data', uc.data);
+
 module.exports = router;
