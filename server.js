@@ -9,6 +9,12 @@ const mongoose = require('mongoose');
 // Initialize Express App
 const app = express();
 
+// Database
+const db = require('./config/database').MongoURI;
+mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log('Connected to database (mongoDB)...'))
+    .catch(err => console.log('dbError: ', err));
+
 /* ------------ Middlewares ------------- */
 
 // BodyParser
